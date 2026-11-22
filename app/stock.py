@@ -3,7 +3,7 @@ LOW_STOCK_THRESHOLD = 3
 
 
 def stock_label(quantity):
-    return "много" if quantity > MANY_THRESHOLD else "мало"
+    return "Много в наличии" if quantity > MANY_THRESHOLD else "Мало в наличии"
 
 
 def is_low_stock(quantity):
