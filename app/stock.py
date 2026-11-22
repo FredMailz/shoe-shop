@@ -1,5 +1,5 @@
 def stock_label(quantity):
-    return "много" if quantity > 5 else "мало"
+    return "Много в наличии" if quantity > 5 else "Мало в наличии"
 
 
 def is_low_stock(quantity):
