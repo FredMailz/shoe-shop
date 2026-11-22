@@ -96,7 +96,7 @@ class ProductCard(QFrame):
 class CatalogWindow(QMainWindow):
     def __init__(self, database):
         super().__init__()
-        self.setWindowTitle("Магазин обуви")
+        self.setWindowTitle("ShoeShop — каталог обуви")
         self.resize(900, 700)
 
         container = QWidget()
