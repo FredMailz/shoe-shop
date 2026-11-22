@@ -41,6 +41,28 @@
 - `database/` — скрипт базы данных `shoe_store.sql` (схема и данные)
 - `docs/` — ER-диаграмма базы данных `er_diagram.pdf`
 
+## ER-диаграмма базы данных
+
+Файл: `docs/er_diagram.pdf`. СУБД — PostgreSQL 14, база `shoe_store`.
+
+Основные таблицы:
+
+- `roles` — роли пользователей (Администратор, Менеджер, Авторизованный пользователь);
+- `users` — пользователи: фамилия, имя, отчество, логин, роль (`role_id` → `roles`);
+- `categories`, `subcategories` — категория и подкатегория товара (`subcategories.category_id` → `categories`);
+- `manufacturers` — производители;
+- `products` — модели обуви: наименование, изображение, описание, состав, цена и ссылки на подкатегорию и производителя;
+- `sizes` — справочник размеров;
+- `stock_items` — товарные позиции (сочетание модели и размера) и доступное для заказа количество (`product_id` → `products`, `size_id` → `sizes`);
+- `orders` — заказы: дата заказа и клиент (`user_id` → `users`);
+- `order_items` — состав заказа: товарная позиция, количество, цена за единицу (`order_id` → `orders`, `stock_item_id` → `stock_items`).
+
+Связи: `roles` 1—N `users` 1—N `orders` 1—N `order_items` N—1 `stock_items` N—1 `products` N—1 `subcategories` N—1 `categories`;
+`products` N—1 `manufacturers`; `stock_items` N—1 `sizes`.
+
+Итоговая сумма по заказу не хранится, а вычисляется как `SUM(quantity * unit_price)` по строкам `order_items`,
+поэтому она всегда согласована с составом заказа.
+
 ## Автор
 
 FredMailz
