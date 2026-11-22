@@ -13,7 +13,7 @@ def main():
         database = Database(load_database_config())
         window = CatalogWindow(database)
     except (ConfigError, DatabaseError) as error:
-        QMessageBox.critical(None, "Ошибка подключения", f"Не удалось подключиться к базе данных.\n{error}")
+        QMessageBox.critical(None, "Ошибка подключения", f"Не удалось подключиться к базе данных.\nПроверьте параметры подключения в файле config.ini.\n{error}")
         return 1
     window.show()
     return application.exec_()
